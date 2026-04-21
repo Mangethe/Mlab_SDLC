@@ -122,11 +122,18 @@ open index.html
 ## 📂 Repo Structure
 
 Mlab_SDLC/
+
 ├── index.html
+
 ├── personas.html
+
 ├── data/
 │   └── users.json          ← generated using convert_to_json.py script
+
 ├── convert_to_json.py      ← (run only after new updates to the users)
+
 ├── script.js
+
 ├── style.css
+
 └── README.md
