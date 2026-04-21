@@ -646,8 +646,8 @@ async function init() {
     <div class="insight-card" data-icon="👑">
       <div class="insight-label">Power User Signal</div>
       <h4>Patron Multiplier Effect</h4>
-      <p>Patron users have <strong>${patronMultiplier}×</strong> the watchlist size and <strong>${sessionMultiplier}×</strong> the session length of Free users. They are the most defensible segment — zero churn — but only 15% of this dataset.</p>
-      <div class="finding">👑 Patron lifetime value: ~${(36.7*25).toFixed(0)} total avg revenue vs Free $0</div>
+      <p>Patron users have <strong>${patronMultiplier}×</strong> the watchlist size and <strong>${sessionMultiplier}×</strong> the session length of Free users. They are the most defensible segment — zero churn — but only ${Math.round(stats.Patron.n / total * 100)}% of this dataset.</p>
+      <div class="finding">👑 Patron lifetime value: ~${(stats.Patron.age * 25).toFixed(0)} total avg revenue vs Free $0</div>
     </div>
     <div class="insight-card" data-icon="📱">
       <div class="insight-label">Platform Strategy</div>

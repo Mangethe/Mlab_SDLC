@@ -28,7 +28,7 @@ We segmented 20+ million LetterBoxd users by **subscription tier** (Free, Pro, P
 
 | User Role | Activity | Story | Priority |
 | ----------- | ---------- | ------- | ---------- |
-| **Free user** | Discover trending | As a free user, I want to see trending movies so I can decide what to watch effortessly. | Must have |
+| **Free user** | Discover trending | As a free user, I want to see trending movies so I can decide what to watch effortlessly. | Must have |
 | | Quick rating | As a free user, I want to give a star rating without writing a review. | Must have |
 | **Pro user** | Yearly stats | As a Pro user, I want to see my Year in Review charts to share on social media. | Must have |
 | | Filtering | As a Pro user, I want to filter my feed by "friends only". | Should have |
@@ -100,7 +100,7 @@ We segmented 20+ million LetterBoxd users by **subscription tier** (Free, Pro, P
 
 ```bash
 git clone https://github.com/mangethe/Mlab_SDLC.git
-cd letterboxd-user-persona
+cd Mlab_SDLC
 open index.html
 ```
 
