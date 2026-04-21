@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>LetterBoxd Personas | Sub‑Tier Segmentation</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Inter', system-ui, sans-serif;
+      background: #f4f6fa;
+      padding: 2rem 1rem;
+    }
+
+    .container {
+      max-width: 1000px;
+      margin: 0 auto;
+    }
+
+    .back-link {
+      display: inline-block;
+      margin-bottom: 1rem;
+      color: #f5b042;
+      text-decoration: none;
+      font-weight: 500;
+    }
+
+    h1 {
+      font-size: 2rem;
+      font-weight: 700;
+      background: linear-gradient(135deg, #1e2a3a, #0f172a);
+      background-clip: text;
+      -webkit-background-clip: text;
+      color: transparent;
+    }
+
+    .segment-note {
+      background: #eef2ff;
+      padding: 0.75rem 1rem;
+      border-radius: 20px;
+      margin: 1rem 0 1.5rem 0;
+      font-size: 0.9rem;
+    }
+
+    .tier-selector {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 1rem;
+      margin: 1.5rem 0;
+    }
+
+    button {
+      padding: 0.75rem 1.8rem;
+      border: none;
+      border-radius: 60px;
+      font-weight: 600;
+      background: #e2e8f0;
+      cursor: pointer;
+      transition: 0.2s;
+    }
+
+    button:hover {
+      transform: translateY(-2px);
+      background: #cbd5e1;
+    }
+
+    .persona-card {
+      background: white;
+      border-radius: 32px;
+      padding: 2rem;
+      box-shadow: 0 20px 35px -12px rgba(0,0,0,0.15);
+    }
+
+    .free-bg { border-top: 8px solid #6c91b2; }
+    .pro-bg { border-top: 8px solid #f5b042; }
+    .patron-bg { border-top: 8px solid #6a4e9b; }
+
+    .bio-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+      gap: 0.75rem 1.5rem;
+      margin: 1.2rem 0;
+      background: #f9fafc;
+      padding: 1rem;
+      border-radius: 24px;
+    }
+
+    .bio-item strong {
+      min-width: 105px;
+      display: inline-block;
+    }
+
+    .habits-section {
+      background: #fefce8;
+      padding: 1rem;
+      border-radius: 20px;
+      margin: 1rem 0;
+    }
+
+    blockquote {
+      margin: 1rem 0 0;
+      padding: 1rem;
+      background: #f8fafc;
+      border-left: 4px solid #94a3b8;
+      font-style: italic;
+    }
+
+    footer {
+      margin-top: 2rem;
+      text-align: center;
+      font-size: 0.8rem;
+      color: #475569;
+    }
+  </style>
+</head>
+<body>
+<div class="container">
+  <a href="index.html" class="back-link">← Back to workshop landing page</a>
+  <h1>🎬 Persona Explorer: Free vs Pro vs Patron</h1>
+  <div class="segment-note">
+    🔍 <strong>Why subscription tier?</strong> Our group chose <strong>Sub Tier</strong> as the segmentation because it reveals clear behavioural and financial patterns. Free users have high churn, Pro users are engaged, Patrons are loyal power users.
+  </div>
+
+  <div class="tier-selector">
+    <button data-tier="Free">🆓 Free Tier</button>
+    <button data-tier="Pro">⭐ Pro Tier</button>
+    <button data-tier="Patron">👑 Patron Tier</button>
+  </div>
+
+  <div id="persona-card" class="persona-card free-bg"></div>
+  <footer>Data from LetterBoxd case study (20 users) · Personas built on real habits, watchlist size, session length, and churn risk.</footer>
+</div>
+
+<script>
+  const personas = {
+    Free: {
+      name: "Casual Casey",
+      agegroup: "24–30", gender: "Female", location: "São Paulo, Brazil",
+      occupation: "Retail associate", income: "$18k/year", company: "Local retailer",
+      education: "Some college", maritalStatus: "Single",
+      passion: "Finding hidden gems without commitment",
+      influence: "TikTok, IMDb ratings", personality: "Impulsive, low patience",
+      habits: "Mobile-only, almost zero reviews, small watchlist (<60), uses search & home page.",
+      device: "Android / iOS App", favGenre: "Action / Comedy",
+      churnRisk: "⚠️ High to Critical", revenue: "$0 / month",
+      quote: "I just wanna know if a movie is worth my time."
+    },
+    Pro: {
+      name: "Dedicated Dana",
+      agegroup: "31–38", gender: "Male", location: "Austin, Texas",
+      occupation: "UX Designer", income: "$82k/year", company: "Tech startup",
+      education: "Bachelor’s in Design", maritalStatus: "Married",
+      passion: "Tracking film journeys & yearly stats",
+      influence: "LetterBoxd power users, A24", personality: "Organized, community-driven",
+      habits: "Logs 10–15 movies/month, writes reviews, uses mobile + desktop.",
+      device: "iOS + Windows/macOS", favGenre: "Horror / Drama",
+      churnRisk: "✅ Low churn", revenue: "$10 / month",
+      quote: "My diary is my memory. Pro is worth it for the stats."
+    },
+    Patron: {
+      name: "Curator Chris",
+      agegroup: "42–55", gender: "Non-binary", location: "London, UK",
+      occupation: "Film professor", income: "$120k/year", company: "University of Arts",
+      education: "MA in Film Studies", maritalStatus: "Partnered",
+      passion: "Preserving cinematic legacy",
+      influence: "Criterion, MUBI", personality: "Meticulous, detail-obsessed",
+      habits: "Daily use, desktop-first, huge watchlist (5000+), edits reviews.",
+      device: "Desktop + Tablet", favGenre: "Noir / Western / Foreign",
+      churnRisk: "🛡️ Zero churn", revenue: "$25 / month",
+      quote: "LetterBoxd is my legacy. Patron supports the craft."
+    }
+  };
+
+  function showPersona(tier) {
+    const p = personas[tier];
+    const card = document.getElementById('persona-card');
+    card.className = `persona-card ${tier.toLowerCase()}-bg`;
+    card.innerHTML = `
+      <h2>${p.name} <span style="background:#eef2ff; padding:0.2rem 0.8rem; border-radius:30px; font-size:0.8rem;">${tier}</span></h2>
+      <div class="bio-grid">
+        ${Object.entries(p).filter(([k]) => ['agegroup','gender','location','occupation','income','company','education','maritalStatus','passion','influence','personality'].includes(k)).map(([k,v]) => `<div class="bio-item"><strong>${k.charAt(0).toUpperCase()+k.slice(1)}:</strong> ${v}</div>`).join('')}
+      </div>
+      <div class="habits-section">
+        <strong>📱 Platform habits:</strong> ${p.habits}<br>
+        <strong>💻 Device:</strong> ${p.device}<br>
+        <strong>❤️ Fav genre:</strong> ${p.favGenre}<br>
+        <strong>⚠️ Churn risk:</strong> ${p.churnRisk}<br>
+        <strong>💰 Revenue:</strong> ${p.revenue}
+      </div>
+      <blockquote>“${p.quote}”</blockquote>
+    `;
+  }
+
+  document.querySelectorAll('button').forEach(btn => {
+    btn.addEventListener('click', () => showPersona(btn.dataset.tier));
+  });
+  showPersona('Free');
+</script>
+</body>
+</html>

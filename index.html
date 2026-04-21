@@ -1,0 +1,283 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Mlab × GIZ | LetterBoxd Persona Project</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+    body {
+      font-family: 'Inter', system-ui, -apple-system, sans-serif;
+      background: #f8fafc;
+      color: #0f172a;
+      line-height: 1.5;
+    }
+    .hero {
+      background: linear-gradient(135deg, #0f172a 0%, #1e293b 100%);
+      color: white;
+      padding: 4rem 2rem;
+      text-align: center;
+    }
+    .hero h1 { font-size: 2.5rem; margin-bottom: 1rem; }
+    .hero p { font-size: 1.2rem; max-width: 700px; margin: 0 auto; opacity: 0.9; }
+    .container { max-width: 1100px; margin: 0 auto; padding: 2rem 1.5rem; }
+    .section { margin-bottom: 3rem; }
+    .section h2 {
+      font-size: 1.8rem;
+      margin-bottom: 1rem;
+      border-left: 5px solid #f5b042;
+      padding-left: 1rem;
+    }
+    .card-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+      gap: 1.5rem;
+      margin-top: 1.5rem;
+    }
+    .card {
+      background: white;
+      border-radius: 24px;
+      padding: 1.5rem;
+      box-shadow: 0 8px 20px rgba(0,0,0,0.05);
+      border: 1px solid #e2e8f0;
+    }
+    .card h3 { font-size: 1.3rem; margin-bottom: 0.5rem; }
+    .badge {
+      background: #eef2ff;
+      padding: 0.2rem 0.6rem;
+      border-radius: 30px;
+      font-size: 0.75rem;
+      font-weight: 600;
+      display: inline-block;
+      margin-bottom: 0.75rem;
+    }
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      background: white;
+      border-radius: 20px;
+      overflow: hidden;
+      box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+    }
+    th, td {
+      padding: 1rem;
+      text-align: left;
+      border-bottom: 1px solid #e2e8f0;
+    }
+    th { background: #f1f5f9; font-weight: 600; }
+    tr:hover { background: #f8fafc; }
+    .insight-box {
+      background: #eef2ff;
+      padding: 1rem;
+      border-radius: 20px;
+      margin: 1rem 0;
+    }
+    .btn {
+      display: inline-block;
+      background: #f5b042;
+      color: #0f172a;
+      font-weight: 600;
+      padding: 0.75rem 1.8rem;
+      border-radius: 60px;
+      text-decoration: none;
+      transition: 0.2s;
+      margin-top: 1rem;
+    }
+    .btn:hover { background: #ffbe5e; transform: translateY(-2px); }
+    footer {
+      background: #e2e8f0;
+      text-align: center;
+      padding: 2rem;
+      font-size: 0.85rem;
+      color: #334155;
+    }
+    .loading { text-align: center; padding: 2rem; }
+    @media (max-width: 700px) {
+      .hero h1 { font-size: 1.8rem; }
+      th, td { padding: 0.75rem; font-size: 0.9rem; }
+    }
+  </style>
+</head>
+<body>
+<div class="hero">
+  <h1>🎬 Stepup II Cohort Tshwane</h1>
+  <p>Mlab × GIZ Workshop | Product Development Lifecycle in Action</p>
+</div>
+
+<div class="container">
+  <!-- Workshop context (same as before) -->
+  <div class="section">
+    <h2>📌 About the Workshop</h2>
+    <p>On <strong>Wednesday</strong>, Mlab in partnership with <strong>GIZ</strong> hosted a hands‑on session for the Stepup II cohort in Tshwane. We applied the full product development lifecycle — from stakeholder analysis to deployment — using real‑world user data from <strong>LetterBoxd</strong>, a social platform for film lovers with over 18 million users.</p>
+    <div class="card-grid">
+      <div class="card"><div class="badge">Phase 1–2</div><h3>Planning & Analysis</h3><p>Acted as BAs and UX/DBA team: interviewed stakeholders, defined segmentation (subscription tier), analysed user habits.</p></div>
+      <div class="card"><div class="badge">Phase 3–4</div><h3>Design & Implementation</h3><p>Wireframes → high‑fidelity prototype → coded HTML/CSS/JS personas → GitHub Pages deployment.</p></div>
+      <div class="card"><div class="badge">Phase 5–7</div><h3>Test, Deploy, Maintain</h3><p>Tested persona switching, responsiveness, data accuracy. Deployed publicly. Ready for database integration.</p></div>
+    </div>
+  </div>
+
+  <!-- Key lecture takeaways -->
+  <div class="section">
+    <h2>🎓 Key Takeaways from the Lecture</h2>
+    <ul style="margin-left: 2rem;">
+      <li>LetterBoxd works as a “digital diary” for movies: find, rate/review, save to lists, interact socially, analyse stats.</li>
+      <li>Watchlist size + social connections + session length strongly predict willingness to pay.</li>
+      <li>Free users who only browse (search, home page, trailers) have high churn risk.</li>
+      <li>Patron power users create thousands of lists and have near‑zero churn.</li>
+    </ul>
+  </div>
+
+  <!-- LIVE DATA SECTION: Metrics per tier -->
+  <div class="section">
+    <h2>📊 Live Data Analysis (from users.json)</h2>
+    <div id="stats-container" class="loading">Loading data...</div>
+  </div>
+
+  <!-- Additional insights (also live) -->
+  <div class="section" id="insights-container">
+    <h2>🔍 Additional Insights (auto‑generated)</h2>
+    <div class="loading">Loading insights...</div>
+  </div>
+
+  <!-- Persona link -->
+  <div class="section" style="text-align: center; background: #eef2ff; padding: 2rem; border-radius: 32px;">
+    <h2>👥 Meet Our Personas</h2>
+    <p style="max-width: 600px; margin: 0.5rem auto;">Based on the data, we built three detailed personas — one for each sub tier. Each includes demographics, habits, and psychographics.</p>
+    <a href="personas.html" class="btn">✨ View Personas (Full Bios) ✨</a>
+  </div>
+</div>
+
+<footer>
+  Mlab × GIZ Stepup II Cohort Tshwane | Product Development Workshop | Data source: <code>data/users.json</code> (live update)
+</footer>
+
+<script>
+  async function loadData() {
+    try {
+      const response = await fetch('data/users.json');
+      const json = await response.json();
+      const users = json.users;
+      
+      // Group by tier
+      const tiers = { Free: [], Pro: [], Patron: [] };
+      users.forEach(u => {
+        if (tiers[u.tier]) tiers[u.tier].push(u);
+      });
+      
+      // Calculate metrics
+      const metrics = {};
+      for (const [tier, userList] of Object.entries(tiers)) {
+        if (userList.length === 0) continue;
+        const avgWatchlist = userList.reduce((sum, u) => sum + u.watchlist, 0) / userList.length;
+        const avgSocial = userList.reduce((sum, u) => sum + u.social, 0) / userList.length;
+        const avgSession = userList.reduce((sum, u) => sum + u.session, 0) / userList.length;
+        // Churn risk distribution: count high+critical
+        const highRiskCount = userList.filter(u => u.churn === 'High' || u.churn === 'Critical').length;
+        const churnSummary = `${highRiskCount}/${userList.length} high/critical`;
+        
+        metrics[tier] = {
+          avgWatchlist: Math.round(avgWatchlist),
+          avgSocial: Math.round(avgSocial),
+          avgSession: avgSession.toFixed(0),
+          churnSummary,
+          count: userList.length
+        };
+      }
+      
+      // Render table
+      const tableHtml = `
+        <table>
+          <thead>
+            <tr><th>Metric</th><th>Free Tier</th><th>Pro Tier</th><th>Patron Tier</th></tr>
+          </thead>
+          <tbody>
+            <tr><td>📋 Avg Watchlist Size</td><td>${metrics.Free.avgWatchlist}</td><td>${metrics.Pro.avgWatchlist}</td><td>${metrics.Patron.avgWatchlist}</td></tr>
+            <tr><td>👥 Avg Social Connections</td><td>${metrics.Free.avgSocial}</td><td>${metrics.Pro.avgSocial}</td><td>${metrics.Patron.avgSocial}</td></tr>
+            <tr><td>⏱️ Avg Session Length (min)</td><td>${metrics.Free.avgSession}</td><td>${metrics.Pro.avgSession}</td><td>${metrics.Patron.avgSession}</td></tr>
+            <tr><td>⚠️ Churn Risk (High/Critical)</td><td>${metrics.Free.churnSummary}</td><td>${metrics.Pro.churnSummary}</td><td>${metrics.Patron.churnSummary}</td></tr>
+          </tbody>
+        </table>
+        <div class="insight-box" style="margin-top: 1rem;">
+          💡 <strong>Key insight:</strong> Watchlist size + social connections + session length predict willingness to pay. Free users browse; Patrons build archives.
+        </div>
+      `;
+      document.getElementById('stats-container').innerHTML = tableHtml;
+      
+      // Additional insights
+      const additional = generateAdditionalInsights(users, tiers);
+      document.getElementById('insights-container').innerHTML = `
+        <h2>🔍 Additional Insights (auto‑generated)</h2>
+        ${additional}
+      `;
+    } catch (error) {
+      document.getElementById('stats-container').innerHTML = '<p style="color:red;">Error loading data. Make sure data/users.json exists.</p>';
+      console.error(error);
+    }
+  }
+  
+  function generateAdditionalInsights(users, tiers) {
+    // Most common device per tier
+    const deviceCount = { Free: {}, Pro: {}, Patron: {} };
+    const genreCount = { Free: {}, Pro: {}, Patron: {} };
+    const avgAge = { Free: 0, Pro: 0, Patron: 0 };
+    const avgMovies = { Free: 0, Pro: 0, Patron: 0 };
+    
+    for (const [tier, list] of Object.entries(tiers)) {
+      let sumAge = 0, sumMovies = 0;
+      list.forEach(u => {
+        deviceCount[tier][u.device] = (deviceCount[tier][u.device] || 0) + 1;
+        genreCount[tier][u.genre] = (genreCount[tier][u.genre] || 0) + 1;
+        sumAge += u.accountAge;
+        sumMovies += u.moviesWatched;
+      });
+      avgAge[tier] = (sumAge / list.length).toFixed(1);
+      avgMovies[tier] = Math.round(sumMovies / list.length);
+    }
+    
+    const getMostCommon = (obj) => {
+      let maxCount = 0, maxKey = '';
+      for (const [k, v] of Object.entries(obj)) if (v > maxCount) { maxCount = v; maxKey = k; }
+      return maxKey || '—';
+    };
+    
+    return `
+      <div class="card-grid">
+        <div class="card">
+          <h3>📱 Most Used Device</h3>
+          <p><strong>Free:</strong> ${getMostCommon(deviceCount.Free)}<br>
+          <strong>Pro:</strong> ${getMostCommon(deviceCount.Pro)}<br>
+          <strong>Patron:</strong> ${getMostCommon(deviceCount.Patron)}</p>
+        </div>
+        <div class="card">
+          <h3>🎭 Top Genre (by tier)</h3>
+          <p><strong>Free:</strong> ${getMostCommon(genreCount.Free)}<br>
+          <strong>Pro:</strong> ${getMostCommon(genreCount.Pro)}<br>
+          <strong>Patron:</strong> ${getMostCommon(genreCount.Patron)}</p>
+        </div>
+        <div class="card">
+          <h3>📆 Avg Account Age (months)</h3>
+          <p><strong>Free:</strong> ${avgAge.Free}<br>
+          <strong>Pro:</strong> ${avgAge.Pro}<br>
+          <strong>Patron:</strong> ${avgAge.Patron}</p>
+        </div>
+        <div class="card">
+          <h3>🎬 Avg Movies Watched</h3>
+          <p><strong>Free:</strong> ${avgMovies.Free}<br>
+          <strong>Pro:</strong> ${avgMovies.Pro}<br>
+          <strong>Patron:</strong> ${avgMovies.Patron}</p>
+        </div>
+      </div>
+      <div class="insight-box">
+        📈 <strong>Correlation note:</strong> Patrons have the oldest accounts (avg ${avgAge.Patron} months) and watch the most movies (${avgMovies.Patron}). Free users with high churn often use Smart TVs or mobile browsers.
+      </div>
+    `;
+  }
+  
+  loadData();
+</script>
+</body>
+</html>

@@ -1,0 +1,16 @@
+{
+  "name": "day-1",
+  "version": "1.0.0",
+  "description": "This project was developed as part of a **product development workshop** organised by **Mlab** in partnership with **GIZ**. The goal was to apply the full product lifecycle — from stakeholder analysis to deployment — using real-world user data from **LetterBoxd**, a social platform for film lovers.",
+  "main": "script.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "commonjs",
+  "dependencies": {
+    "xlsx": "^0.18.5"
+  }
+}

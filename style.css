@@ -1,0 +1,36 @@
+body {
+  font-family: 'Inter', system-ui, sans-serif;
+  background: #f4f4f4;
+  margin: 0;
+  padding: 2rem;
+}
+.container {
+  max-width: 800px;
+  margin: 0 auto;
+}
+.tier-selector {
+  display: flex;
+  gap: 1rem;
+  margin: 2rem 0;
+}
+button {
+  padding: 0.75rem 1.5rem;
+  border: none;
+  border-radius: 40px;
+  font-weight: bold;
+  cursor: pointer;
+  background: #e0e0e0;
+  transition: 0.2s;
+}
+button:hover {
+  transform: scale(1.02);
+}
+.persona-card {
+  background: white;
+  border-radius: 24px;
+  padding: 2rem;
+  box-shadow: 0 12px 30px rgba(0,0,0,0.1);
+}
+.free-bg { border-top: 8px solid #6c91b2; }
+.pro-bg { border-top: 8px solid #f5b042; }
+.patron-bg { border-top: 8px solid #6a4e9b; }

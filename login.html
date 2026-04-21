@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>LetterBoxd Persona Login Demo</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Inter', system-ui, -apple-system, sans-serif;
+      background: linear-gradient(145deg, #1a1e2b 0%, #0f1219 100%);
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 1rem;
+    }
+
+    .login-container {
+      max-width: 500px;
+      width: 100%;
+      background: rgba(255,255,255,0.05);
+      -webkit-backdrop-filter: blur(12px);
+      backdrop-filter: blur(12px);
+      border-radius: 48px;
+      padding: 2rem;
+      box-shadow: 0 25px 45px rgba(0,0,0,0.3);
+      border: 1px solid rgba(255,255,255,0.1);
+    }
+
+    h1 {
+      color: white;
+      font-size: 2rem;
+      text-align: center;
+      margin-bottom: 0.5rem;
+    }
+
+    .sub {
+      text-align: center;
+      color: #a0aec0;
+      margin-bottom: 2rem;
+      font-size: 0.9rem;
+    }
+
+    .persona-card {
+      background: #1e2436;
+      border-radius: 28px;
+      padding: 1rem 1.2rem;
+      margin-bottom: 1rem;
+      cursor: pointer;
+      transition: all 0.2s;
+      border: 1px solid #2d3748;
+    }
+
+    .persona-card:hover {
+      transform: translateY(-3px);
+      background: #2a3248;
+      border-color: #f5b042;
+    }
+
+    .persona-name {
+      font-size: 1.3rem;
+      font-weight: 600;
+      color: white;
+      display: flex;
+      justify-content: space-between;
+    }
+
+    .tier-badge {
+      font-size: 0.7rem;
+      background: #2d3748;
+      padding: 0.2rem 0.6rem;
+      border-radius: 40px;
+      color: #cbd5e0;
+    }
+
+    .persona-desc {
+      font-size: 0.85rem;
+      color: #a0aec0;
+      margin-top: 0.4rem;
+    }
+
+    .login-btn {
+      width: 100%;
+      margin-top: 1rem;
+      background: #f5b042;
+      border: none;
+      padding: 0.9rem;
+      border-radius: 60px;
+      font-weight: bold;
+      font-size: 1rem;
+      color: #1a1e2b;
+      cursor: pointer;
+      transition: 0.2s;
+    }
+
+    .login-btn:hover {
+      background: #ffbe5e;
+      transform: scale(0.98);
+    }
+
+    .selected {
+      border: 2px solid #f5b042;
+      background: #2a3248;
+    }
+
+    footer {
+      text-align: center;
+      margin-top: 1.5rem;
+      font-size: 0.7rem;
+      color: #4a5568;
+    }
+  </style>
+</head>
+<body>
+<div class="login-container">
+  <h1>🎬 LetterBoxd</h1>
+  <div class="sub">choose your viewer persona to continue</div>
+
+  <div id="persona-list">
+    <div class="persona-card" data-tier="Free">
+      <div class="persona-name">
+        Casual Casey <span class="tier-badge">Free</span>
+      </div>
+      <div class="persona-desc">🎭 24-30 · mobile-only · seeks quick entertainment</div>
+    </div>
+    <div class="persona-card" data-tier="Pro">
+      <div class="persona-name">
+        Dedicated Dana <span class="tier-badge">Pro</span>
+      </div>
+      <div class="persona-desc">📊 31-38 · UX designer · loves stats & reviews</div>
+    </div>
+    <div class="persona-card" data-tier="Patron">
+      <div class="persona-name">
+        Curator Chris <span class="tier-badge">Patron</span>
+      </div>
+      <div class="persona-desc">🎞️ 42-55 · film professor · archive builder</div>
+    </div>
+  </div>
+
+  <button id="loginBtn" class="login-btn">✨ Continue as selected persona ✨</button>
+  <footer>demo · Mlab × GIZ workshop · persona-based login</footer>
+</div>
+
+<script>
+  let selectedTier = 'Free'; // default
+
+  const cards = document.querySelectorAll('.persona-card');
+  cards.forEach(card => {
+    card.addEventListener('click', () => {
+      cards.forEach(c => c.classList.remove('selected'));
+      card.classList.add('selected');
+      selectedTier = card.getAttribute('data-tier');
+    });
+  });
+
+  // set default selected
+  document.querySelector('.persona-card[data-tier="Free"]').classList.add('selected');
+
+  document.getElementById('loginBtn').addEventListener('click', () => {
+    // store selected tier in localStorage or session
+    sessionStorage.setItem('letterboxd_persona_tier', selectedTier);
+    // redirect to the persona explorer (index.html)
+    window.location.href = 'index.html';
+  });
+</script>
+</body>
+</html>

@@ -1,0 +1,74 @@
+# 🎬 LetterBoxd User Persona Explorer
+
+## 📌 Project Overview
+
+This project was developed as part of a **product development workshop** organised by **Mlab** in partnership with **GIZ**. The goal was to apply the full product lifecycle — from stakeholder analysis to deployment — using real-world user data from **LetterBoxd**, a social platform for film lovers.
+
+We segmented 20+ million LetterBoxd users by **subscription tier** (Free, Pro, Patron) and created **data-driven user personas** to understand behaviours, habits, and churn risk.
+
+---
+
+## 🧠 Workshop Learnings (SDLC Applied)
+
+| Phase | Activity |
+|-------|----------|
+| 1. Planning | Acted as BA: interviewed stakeholders, defined segmentation (Sub Tier), created wireframes |
+| 2. Analysis | UX/DBA team: analysed usage patterns, session length, watchlist size, social connections |
+| 3. Design | Built low-fidelity wireframe → high-fidelity prototype (cards, colours, layout) |
+| 4. Implementation | Coded HTML/CSS/JS app, hosted on GitHub Pages |
+| 5. Testing | Validated persona switching, responsiveness, and data accuracy |
+| 6. Deployment | Published live via GitHub Pages |
+| 7. Maintenance | Ready for future enhancements (database, more segments, analytics) |
+
+---
+
+## 📊 Data Source
+
+**Dataset:** `Case Study_LetterBoxd.xlsx`  
+**Users:** 20 anonymized accounts  
+**Key fields:** Sub Tier, Movies Watched, Avg Reviews/Mo, Session Length, Watchlist Size, Social Connections, Churn Risk
+
+---
+
+## 👥 Personas Created
+
+### 🆓 Free Tier – Casual Casey
+> *"I just wanna know if a movie is worth my time."*
+
+- **Habits:** Mobile-only, rarely reviews, uses search & home page  
+- **Churn Risk:** High → Critical  
+- **Revenue:** $0  
+
+### ⭐ Pro Tier – Dedicated Dana
+> *"My diary is my memory. Pro is worth it for the stats."*
+
+- **Habits:** Logs 10–15 movies/month, writes reviews, uses mobile + desktop  
+- **Churn Risk:** Low  
+- **Revenue:** $10/month  
+
+### 👑 Patron Tier – Curator Chris
+> *"LetterBoxd is my legacy. Patron supports the craft."*
+
+- **Habits:** Daily use, desktop-first, huge watchlist, writes long reviews  
+- **Churn Risk:** Zero  
+- **Revenue:** $25/month  
+
+---
+
+## 🚀 Live Demo
+
+👉 [View the Persona Explorer](https://yourusername.github.io/letterboxd-user-persona)  
+*(Replace `yourusername` with your actual GitHub username after deployment)*
+
+---
+
+## 🛠️ Tech Stack
+
+- HTML5  
+- CSS3 (custom properties, flexbox, card design)  
+- Vanilla JavaScript (no frameworks)  
+- GitHub Pages (hosting)
+
+---
+
+## 📂 Repo Structure
