@@ -11,7 +11,7 @@ We segmented 20+ million LetterBoxd users by **subscription tier** (Free, Pro, P
 ## 🧠 Workshop Learnings (SDLC Applied)
 
 | Phase | Activity |
-|-------|----------|
+| ------- | ---------- |
 | 1. Planning | Acted as BA: interviewed stakeholders, defined segmentation (Sub Tier), created wireframes |
 | 2. Analysis | UX/DBA team: analysed usage patterns, session length, watchlist size, social connections |
 | 3. Design | Built low-fidelity wireframe → high-fidelity prototype (cards, colours, layout) |
@@ -22,7 +22,45 @@ We segmented 20+ million LetterBoxd users by **subscription tier** (Free, Pro, P
 
 ---
 
-## 📊 Data Source
+## 🗺 User Story Mapping
+
+### Epic: *Enable film lovers to track, share, and discover movies based on their engagement level*
+
+| User Role | Activity | Story | Priority |
+| ----------- | ---------- | ------- | ---------- |
+| **Free user** | Discover trending | As a free user, I want to see trending movies so I can decide what to watch effortessly. | Must have |
+| | Quick rating | As a free user, I want to give a star rating without writing a review. | Must have |
+| **Pro user** | Yearly stats | As a Pro user, I want to see my Year in Review charts to share on social media. | Must have |
+| | Filtering | As a Pro user, I want to filter my feed by "friends only". | Should have |
+| **Patron user** | Unlimited lists | As a Patron user, I want to create unlimited custom lists (up to 10k items). | Must have |
+| | Customization | As a Patron user, I want to customize my profile with movie backdrops. | Should have |
+
+### 🧩 User Journey Map
+
+**Free → Pro → Patron** progression triggers:
+
+1. **Awareness:** User sees a friend's "Year in Review" stats.
+2. **Trial:** User signs up (free), uses watchlist and ratings.
+3. **Engagement:** User writes first review, receives social validation (likes).
+4. **Conversion (Pro):** User wants deeper stats and filtering after ~3 months.
+5. **Power Use:** User hits list limits, leading to **Patron** conversion.
+
+---
+
+## 🔍 Key Insights from Data
+
+| Metric | Free Tier | Pro Tier | Patron Tier |
+| -------- | ----------- | ---------- | -------------- |
+| Avg Watchlist Size | 55 | 580 | 5,066 |
+| Avg Social Connections | 8 | 268 | 2,133 |
+| Avg Session Length | 19 min | 53 min | 118 min |
+| Churn Risk | High | Low | Zero |
+
+**Conclusion:** Watchlist size, social engagement, and session duration are the strongest predictors of subscription willingness.
+
+---
+
+## Data Source
 
 **Dataset:** `Case Study_LetterBoxd.xlsx`  
 **Users:** 20 anonymized accounts  
@@ -33,6 +71,7 @@ We segmented 20+ million LetterBoxd users by **subscription tier** (Free, Pro, P
 ## 👥 Personas Created
 
 ### 🆓 Free Tier – Casual Casey
+
 > *"I just wanna know if a movie is worth my time."*
 
 - **Habits:** Mobile-only, rarely reviews, uses search & home page  
@@ -40,6 +79,7 @@ We segmented 20+ million LetterBoxd users by **subscription tier** (Free, Pro, P
 - **Revenue:** $0  
 
 ### ⭐ Pro Tier – Dedicated Dana
+
 > *"My diary is my memory. Pro is worth it for the stats."*
 
 - **Habits:** Logs 10–15 movies/month, writes reviews, uses mobile + desktop  
@@ -47,6 +87,7 @@ We segmented 20+ million LetterBoxd users by **subscription tier** (Free, Pro, P
 - **Revenue:** $10/month  
 
 ### 👑 Patron Tier – Curator Chris
+
 > *"LetterBoxd is my legacy. Patron supports the craft."*
 
 - **Habits:** Daily use, desktop-first, huge watchlist, writes long reviews  
@@ -55,12 +96,19 @@ We segmented 20+ million LetterBoxd users by **subscription tier** (Free, Pro, P
 
 ---
 
-## 🚀 Live Demo
+## 🧪 How to Run Locally
 
-👉 [View the Persona Explorer](https://yourusername.github.io/letterboxd-user-persona)  
-*(Replace `yourusername` with your actual GitHub username after deployment)*
+```bash
+git clone https://github.com/mangethe/Mlab_SDLC.git
+cd letterboxd-user-persona
+open index.html
+```
 
 ---
+
+## 🚀 Live Demo
+
+👉 [View the Persona Explorer](https://mangethe.github.io/Mlab_SDLC)
 
 ## 🛠️ Tech Stack
 
@@ -72,3 +120,13 @@ We segmented 20+ million LetterBoxd users by **subscription tier** (Free, Pro, P
 ---
 
 ## 📂 Repo Structure
+
+Mlab_SDLC/
+├── index.html
+├── personas.html
+├── data/
+│   └── users.json          ← generated using convert_to_json.py script
+├── convert_to_json.py      ← (optional, keep for future updates)
+├── script.js
+├── style.css
+└── README.md

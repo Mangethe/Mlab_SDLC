@@ -31,27 +31,33 @@ const personas = {
   }
 };
 
-function showPersona(tier) {
-  const p = personas[tier];
+document.addEventListener('DOMContentLoaded', () => {
   const card = document.getElementById('persona-card');
-  card.className = `persona-card ${tier.toLowerCase()}-bg`;
-  card.innerHTML = `
-    <h2>${p.name}</h2>
-    <p><strong>🎭 Bio:</strong> ${p.bio}</p>
-    <p><strong>📱 Habits:</strong> ${p.habits}</p>
-    <p><strong>💻 Device:</strong> ${p.device}</p>
-    <p><strong>❤️ Fav Genre:</strong> ${p.favGenre}</p>
-    <p><strong>⚠️ Churn Risk:</strong> ${p.churnRisk}</p>
-    <p><strong>💰 Revenue:</strong> ${p.revenue}</p>
-    <blockquote>“${p.quote}”</blockquote>
-    <hr>
-    <small>📊 Based on real LetterBoxd user segmentation (n=20)</small>
-  `;
-}
 
-document.querySelectorAll('button').forEach(btn => {
-  btn.addEventListener('click', () => showPersona(btn.dataset.tier));
+  function showPersona(tier) {
+    if (!card) return;
+    
+    const p = personas[tier];
+    card.className = `persona-card ${tier.toLowerCase()}-bg`;
+    card.innerHTML = `
+      <h2>${p.name}</h2>
+      <p><strong>🎭 Bio:</strong> ${p.bio}</p>
+      <p><strong>📱 Habits:</strong> ${p.habits}</p>
+      <p><strong>💻 Device:</strong> ${p.device}</p>
+      <p><strong>❤️ Fav Genre:</strong> ${p.favGenre}</p>
+      <p><strong>⚠️ Churn Risk:</strong> ${p.churnRisk}</p>
+      <p><strong>💰 Revenue:</strong> ${p.revenue}</p>
+      <blockquote>“${p.quote}”</blockquote>
+      <hr>
+      <small>📊 Based on real LetterBoxd user segmentation (n=20)</small>
+    `;
+  }
+
+  // Initialize listeners
+  document.querySelectorAll('button[data-tier]').forEach(btn => {
+    btn.addEventListener('click', () => showPersona(btn.dataset.tier));
+  });
+
+  // Load default
+  showPersona('Free');
 });
-
-// Load default
-showPersona('Free');
