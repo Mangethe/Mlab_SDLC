@@ -2,7 +2,7 @@
 
 ## 📌 Project Overview
 
-This project was developed as part of a **product development workshop** organised by **Mlab** in partnership with **GIZ**. The goal was to apply the full product lifecycle — from stakeholder analysis to deployment — using real-world user data from **LetterBoxd**, a social platform for film lovers.
+This project was developed as part of a **product development workshop** organised by **Mlab** in partnership with **GIZ**. The goal was to apply the full product lifecycle (from stakeholder analysis to deployment) using real-world user data from **LetterBoxd**, a social platform for film lovers.
 
 We segmented 20+ million LetterBoxd users by **subscription tier** (Free, Pro, Patron) and created **data-driven user personas** to understand behaviours, habits, and churn risk.
 
@@ -126,7 +126,7 @@ Mlab_SDLC/
 ├── personas.html
 ├── data/
 │   └── users.json          ← generated using convert_to_json.py script
-├── convert_to_json.py      ← (optional, keep for future updates)
+├── convert_to_json.py      ← (run only after new updates to the users)
 ├── script.js
 ├── style.css
 └── README.md

@@ -2,7 +2,7 @@ import pandas as pd
 import json
 
 # Read the second sheet ("LetterBoxd Users")
-df = pd.read_excel(r"C:\Case Study_ LetterBoxd.xlsx", sheet_name="LetterBoxd Users", header=1)
+df = pd.read_excel("Case Study_LetterBoxd.xlsx", sheet_name="LetterBoxd Users", header=1)
 print("✅ Excel file loaded successfully")
 print("Columns found:", df.columns.tolist())
 
