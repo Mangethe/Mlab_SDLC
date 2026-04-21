@@ -3,171 +3,216 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>LetterBoxd Persona Login Demo</title>
+  <title>Persona Login | LetterBoxd Intelligence</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;900&family=DM+Sans:wght@300;400;500;600&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
   <style>
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
+    :root {
+      --ink: #0a0a0f;
+      --gold: #c9a84c;
+      --gold-light: #e8c97a;
+      --free: #4a7fa5;
+      --pro: #c9a84c;
+      --patron: #7b5ea7;
     }
-
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
     body {
-      font-family: 'Inter', system-ui, -apple-system, sans-serif;
-      background: linear-gradient(145deg, #1a1e2b 0%, #0f1219 100%);
+      font-family: 'DM Sans', sans-serif;
+      background: radial-gradient(ellipse at 20% 50%, #0f1825 0%, #0a0a0f 60%);
       min-height: 100vh;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      padding: 1rem;
+      display: flex; align-items: center; justify-content: center;
+      padding: 1.5rem;
     }
 
-    .login-container {
-      max-width: 500px;
-      width: 100%;
-      background: rgba(255,255,255,0.05);
-      -webkit-backdrop-filter: blur(12px);
-      backdrop-filter: blur(12px);
-      border-radius: 48px;
+    .login-wrap {
+      width: 100%; max-width: 460px;
+    }
+
+    .login-header { text-align: center; margin-bottom: 2rem; }
+    .login-logo {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.8rem; color: var(--gold);
+      display: block; margin-bottom: 0.5rem;
+    }
+    .login-sub {
+      font-family: 'DM Mono', monospace;
+      font-size: 0.68rem; color: rgba(255,255,255,0.3);
+      letter-spacing: 0.15em; text-transform: uppercase;
+    }
+
+    .login-box {
+      background: rgba(255,255,255,0.04);
+      backdrop-filter: blur(20px);
+      border: 1px solid rgba(255,255,255,0.08);
+      border-radius: 32px;
       padding: 2rem;
-      box-shadow: 0 25px 45px rgba(0,0,0,0.3);
-      border: 1px solid rgba(255,255,255,0.1);
     }
 
-    h1 {
-      color: white;
-      font-size: 2rem;
-      text-align: center;
-      margin-bottom: 0.5rem;
+    .login-prompt {
+      font-size: 0.85rem; color: rgba(255,255,255,0.45);
+      text-align: center; margin-bottom: 1.5rem;
     }
 
-    .sub {
-      text-align: center;
-      color: #a0aec0;
-      margin-bottom: 2rem;
-      font-size: 0.9rem;
+    .persona-option {
+      border: 1.5px solid rgba(255,255,255,0.08);
+      border-radius: 20px; padding: 1.1rem 1.3rem;
+      margin-bottom: 0.75rem; cursor: pointer;
+      transition: all 0.2s; position: relative;
+      overflow: hidden;
     }
-
-    .persona-card {
-      background: #1e2436;
-      border-radius: 28px;
-      padding: 1rem 1.2rem;
-      margin-bottom: 1rem;
-      cursor: pointer;
-      transition: all 0.2s;
-      border: 1px solid #2d3748;
+    .persona-option::before {
+      content: ''; position: absolute;
+      inset: 0; opacity: 0; transition: opacity 0.2s;
     }
+    .persona-option.free::before { background: linear-gradient(135deg, rgba(74,127,165,0.15), transparent); }
+    .persona-option.pro::before { background: linear-gradient(135deg, rgba(201,168,76,0.15), transparent); }
+    .persona-option.patron::before { background: linear-gradient(135deg, rgba(123,94,167,0.15), transparent); }
+    .persona-option:hover::before, .persona-option.selected::before { opacity: 1; }
 
-    .persona-card:hover {
-      transform: translateY(-3px);
-      background: #2a3248;
-      border-color: #f5b042;
+    .persona-option.selected.free { border-color: var(--free); }
+    .persona-option.selected.pro { border-color: var(--pro); }
+    .persona-option.selected.patron { border-color: var(--patron); }
+
+    .persona-row {
+      display: flex; align-items: center; gap: 1rem;
+      position: relative; z-index: 1;
     }
+    .persona-icon {
+      width: 44px; height: 44px; border-radius: 50%;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 1.3rem; flex-shrink: 0;
+    }
+    .free .persona-icon { background: rgba(74,127,165,0.2); }
+    .pro .persona-icon { background: rgba(201,168,76,0.2); }
+    .patron .persona-icon { background: rgba(123,94,167,0.2); }
 
+    .persona-info { flex: 1; }
+    .persona-name-row {
+      display: flex; align-items: center; justify-content: space-between;
+    }
     .persona-name {
-      font-size: 1.3rem;
-      font-weight: 600;
-      color: white;
-      display: flex;
-      justify-content: space-between;
+      color: #fff; font-weight: 600; font-size: 0.95rem;
     }
+    .tier-tag {
+      font-family: 'DM Mono', monospace;
+      font-size: 0.6rem; letter-spacing: 0.08em;
+      padding: 0.15rem 0.5rem; border-radius: 20px;
+    }
+    .free .tier-tag { background: rgba(74,127,165,0.2); color: #7ab3d4; }
+    .pro .tier-tag { background: rgba(201,168,76,0.2); color: var(--gold-light); }
+    .patron .tier-tag { background: rgba(123,94,167,0.2); color: #b89de0; }
 
-    .tier-badge {
+    .persona-desc { color: rgba(255,255,255,0.4); font-size: 0.78rem; margin-top: 0.15rem; }
+
+    .check-dot {
+      width: 20px; height: 20px; border-radius: 50%;
+      border: 2px solid rgba(255,255,255,0.15);
+      flex-shrink: 0; transition: all 0.2s;
+      display: flex; align-items: center; justify-content: center;
       font-size: 0.7rem;
-      background: #2d3748;
-      padding: 0.2rem 0.6rem;
-      border-radius: 40px;
-      color: #cbd5e0;
     }
-
-    .persona-desc {
-      font-size: 0.85rem;
-      color: #a0aec0;
-      margin-top: 0.4rem;
-    }
+    .persona-option.selected .check-dot { border-color: var(--gold); background: var(--gold); color: var(--ink); }
 
     .login-btn {
-      width: 100%;
-      margin-top: 1rem;
-      background: #f5b042;
-      border: none;
-      padding: 0.9rem;
-      border-radius: 60px;
-      font-weight: bold;
-      font-size: 1rem;
-      color: #1a1e2b;
-      cursor: pointer;
-      transition: 0.2s;
+      width: 100%; margin-top: 1.5rem;
+      background: var(--gold); color: var(--ink);
+      border: none; padding: 1rem;
+      border-radius: 40px; font-weight: 700; font-size: 1rem;
+      cursor: pointer; transition: all 0.2s;
+      font-family: 'DM Sans', sans-serif;
     }
+    .login-btn:hover { background: var(--gold-light); transform: translateY(-2px); box-shadow: 0 8px 24px rgba(201,168,76,0.3); }
 
-    .login-btn:hover {
-      background: #ffbe5e;
-      transform: scale(0.98);
+    .login-footer {
+      text-align: center; margin-top: 1.5rem;
+      font-size: 0.72rem; color: rgba(255,255,255,0.2);
     }
+    .login-footer a { color: var(--gold); text-decoration: none; }
 
-    .selected {
-      border: 2px solid #f5b042;
-      background: #2a3248;
+    .back-link {
+      display: block; text-align: center;
+      margin-bottom: 1.5rem;
+      color: rgba(255,255,255,0.3); font-size: 0.8rem;
+      text-decoration: none; transition: color 0.2s;
     }
-
-    footer {
-      text-align: center;
-      margin-top: 1.5rem;
-      font-size: 0.7rem;
-      color: #4a5568;
-    }
+    .back-link:hover { color: var(--gold); }
   </style>
 </head>
 <body>
-<div class="login-container">
-  <h1>🎬 LetterBoxd</h1>
-  <div class="sub">choose your viewer persona to continue</div>
-
-  <div id="persona-list">
-    <div class="persona-card" data-tier="Free">
-      <div class="persona-name">
-        Casual Casey <span class="tier-badge">Free</span>
-      </div>
-      <div class="persona-desc">🎭 24-30 · mobile-only · seeks quick entertainment</div>
-    </div>
-    <div class="persona-card" data-tier="Pro">
-      <div class="persona-name">
-        Dedicated Dana <span class="tier-badge">Pro</span>
-      </div>
-      <div class="persona-desc">📊 31-38 · UX designer · loves stats & reviews</div>
-    </div>
-    <div class="persona-card" data-tier="Patron">
-      <div class="persona-name">
-        Curator Chris <span class="tier-badge">Patron</span>
-      </div>
-      <div class="persona-desc">🎞️ 42-55 · film professor · archive builder</div>
-    </div>
+<div class="login-wrap">
+  <a href="index.html" class="back-link">← Back to Dashboard</a>
+  <div class="login-header">
+    <span class="login-logo">🎬 LetterBoxd</span>
+    <span class="login-sub">Persona Experience Demo · Mlab × GIZ</span>
   </div>
 
-  <button id="loginBtn" class="login-btn">✨ Continue as selected persona ✨</button>
-  <footer>demo · Mlab × GIZ workshop · persona-based login</footer>
+  <div class="login-box">
+    <p class="login-prompt">Select your viewer persona to experience the platform through their eyes</p>
+
+    <div class="persona-option free selected" data-tier="Free" onclick="select(this)">
+      <div class="persona-row">
+        <div class="persona-icon">🎭</div>
+        <div class="persona-info">
+          <div class="persona-name-row">
+            <span class="persona-name">Casual Casey</span>
+            <span class="tier-tag">FREE</span>
+          </div>
+          <div class="persona-desc">24–30 · mobile-first · quick entertainment seeker</div>
+        </div>
+        <div class="check-dot">✓</div>
+      </div>
+    </div>
+
+    <div class="persona-option pro" data-tier="Pro" onclick="select(this)">
+      <div class="persona-row">
+        <div class="persona-icon">📊</div>
+        <div class="persona-info">
+          <div class="persona-name-row">
+            <span class="persona-name">Dedicated Dana</span>
+            <span class="tier-tag">PRO</span>
+          </div>
+          <div class="persona-desc">31–38 · stat lover · review writer · community member</div>
+        </div>
+        <div class="check-dot"></div>
+      </div>
+    </div>
+
+    <div class="persona-option patron" data-tier="Patron" onclick="select(this)">
+      <div class="persona-row">
+        <div class="persona-icon">🎞️</div>
+        <div class="persona-info">
+          <div class="persona-name-row">
+            <span class="persona-name">Curator Chris</span>
+            <span class="tier-tag">PATRON</span>
+          </div>
+          <div class="persona-desc">42–55 · film academic · archive builder · power user</div>
+        </div>
+        <div class="check-dot"></div>
+      </div>
+    </div>
+
+    <button class="login-btn" onclick="go()">Continue as Selected Persona →</button>
+    <div class="login-footer">
+      Workshop demo · <a href="personas.html">View full persona bios</a> · Data: 20 LetterBoxd users
+    </div>
+  </div>
 </div>
 
 <script>
-  let selectedTier = 'Free'; // default
-
-  const cards = document.querySelectorAll('.persona-card');
-  cards.forEach(card => {
-    card.addEventListener('click', () => {
-      cards.forEach(c => c.classList.remove('selected'));
-      card.classList.add('selected');
-      selectedTier = card.getAttribute('data-tier');
-    });
+let selected = 'Free';
+function select(el) {
+  document.querySelectorAll('.persona-option').forEach(o => {
+    o.classList.remove('selected');
+    o.querySelector('.check-dot').textContent = '';
   });
-
-  // set default selected
-  document.querySelector('.persona-card[data-tier="Free"]').classList.add('selected');
-
-  document.getElementById('loginBtn').addEventListener('click', () => {
-    // store selected tier in localStorage or session
-    sessionStorage.setItem('letterboxd_persona_tier', selectedTier);
-    // redirect to the persona explorer (index.html)
-    window.location.href = 'index.html';
-  });
+  el.classList.add('selected');
+  el.querySelector('.check-dot').textContent = '✓';
+  selected = el.dataset.tier;
+}
+function go() {
+  sessionStorage.setItem('letterboxd_persona_tier', selected);
+  window.location.href = 'personas.html';
+}
 </script>
 </body>
 </html>

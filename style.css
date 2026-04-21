@@ -1,36 +1,56 @@
+:root {
+  --free-bg: #f3f4f6;
+  --pro-bg: #ecfdf5;
+  --patron-bg: #fffbeb;
+  --border-color: #e5e7eb;
+  --text-main: #111827;
+  --text-muted: #4b5563;
+}
+
 body {
-  font-family: 'Inter', system-ui, sans-serif;
-  background: #f4f4f4;
-  margin: 0;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+  color: var(--text-main);
+  line-height: 1.5;
   padding: 2rem;
 }
-.container {
-  max-width: 800px;
-  margin: 0 auto;
-}
-.tier-selector {
-  display: flex;
-  gap: 1rem;
-  margin: 2rem 0;
-}
-button {
-  padding: 0.75rem 1.5rem;
-  border: none;
-  border-radius: 40px;
-  font-weight: bold;
-  cursor: pointer;
-  background: #e0e0e0;
-  transition: 0.2s;
-}
-button:hover {
-  transform: scale(1.02);
-}
+
 .persona-card {
-  background: white;
-  border-radius: 24px;
+  max-width: 650px;
+  margin: 2rem auto;
   padding: 2rem;
-  box-shadow: 0 12px 30px rgba(0,0,0,0.1);
+  border-radius: 1rem;
+  border: 1px solid var(--border-color);
+  box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+  transition: all 0.3s ease-in-out;
 }
-.free-bg { border-top: 8px solid #6c91b2; }
-.pro-bg { border-top: 8px solid #f5b042; }
-.patron-bg { border-top: 8px solid #6a4e9b; }
+
+/* Tier Backgrounds */
+.free-bg { background-color: var(--free-bg); border-color: #d1d5db; }
+.pro-bg { background-color: var(--pro-bg); border-color: #10b981; }
+.patron-bg { background-color: var(--patron-bg); border-color: #f59e0b; }
+
+h2 {
+  margin-top: 0;
+  font-size: 1.875rem;
+  color: var(--text-main);
+}
+
+blockquote {
+  font-style: italic;
+  font-size: 1.125rem;
+  border-left: 4px solid var(--text-muted);
+  padding-left: 1rem;
+  margin: 1.5rem 0;
+  color: var(--text-muted);
+}
+
+hr {
+  border: 0;
+  border-top: 1px solid var(--border-color);
+  margin: 1.5rem 0;
+}
+
+small {
+  color: var(--text-muted);
+  display: block;
+}
