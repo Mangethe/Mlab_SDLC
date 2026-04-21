@@ -2,7 +2,7 @@
 
 ## 📌 Project Overview
 
-This project was developed as part of a **product development workshop** organised by **Mlab** in partnership with **GIZ**. The goal was to apply the full product lifecycle — from stakeholder analysis to deployment — using real-world user data from **LetterBoxd**, a social platform for film lovers.
+This project was developed as part of a **product development workshop** organised by **Mlab** in partnership with **GIZ**. The goal was to apply the full product lifecycle (from stakeholder analysis to deployment) using real-world user data from **LetterBoxd**, a social platform for film lovers.
 
 We segmented 20+ million LetterBoxd users by **subscription tier** (Free, Pro, Patron) and created **data-driven user personas** to understand behaviours, habits, and churn risk.
 
@@ -28,7 +28,7 @@ We segmented 20+ million LetterBoxd users by **subscription tier** (Free, Pro, P
 
 | User Role | Activity | Story | Priority |
 | ----------- | ---------- | ------- | ---------- |
-| **Free user** | Discover trending | As a free user, I want to see trending movies so I can decide what to watch effortessly. | Must have |
+| **Free user** | Discover trending | As a free user, I want to see trending movies so I can decide what to watch effortlessly. | Must have |
 | | Quick rating | As a free user, I want to give a star rating without writing a review. | Must have |
 | **Pro user** | Yearly stats | As a Pro user, I want to see my Year in Review charts to share on social media. | Must have |
 | | Filtering | As a Pro user, I want to filter my feed by "friends only". | Should have |
@@ -126,7 +126,7 @@ Mlab_SDLC/
 ├── personas.html
 ├── data/
 │   └── users.json          ← generated using convert_to_json.py script
-├── convert_to_json.py      ← (optional, keep for future updates)
+├── convert_to_json.py      ← (run only after new updates to the users)
 ├── script.js
 ├── style.css
 └── README.md

@@ -6,350 +6,7 @@
   <title>LetterBoxd Persona Intelligence | Mlab × GIZ</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;900&family=DM+Sans:wght@300;400;500;600&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
-  <style>
-    :root {
-      --ink: #0a0a0f;
-      --ink-soft: #1c1c28;
-      --paper: #f7f4ef;
-      --paper-warm: #eee9e0;
-      --gold: #c9a84c;
-      --gold-light: #e8c97a;
-      --gold-pale: #f5edda;
-      --free-color: #4a7fa5;
-      --pro-color: #c9a84c;
-      --patron-color: #7b5ea7;
-      --danger: #c0392b;
-      --success: #27ae60;
-      --radius: 20px;
-      --shadow: 0 4px 24px rgba(10,10,15,0.10);
-      --shadow-lg: 0 12px 48px rgba(10,10,15,0.15);
-    }
-
-    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-
-    body {
-      font-family: 'DM Sans', sans-serif;
-      background: var(--paper);
-      color: var(--ink);
-      line-height: 1.6;
-      overflow-x: hidden;
-    }
-
-    /* ── NAV ── */
-    nav {
-      position: sticky; top: 0; z-index: 100;
-      background: var(--ink);
-      display: flex; align-items: center; justify-content: space-between;
-      padding: 0 2.5rem;
-      height: 60px;
-      border-bottom: 1px solid rgba(201,168,76,0.3);
-    }
-    .nav-brand {
-      display: flex; align-items: center; gap: 0.75rem;
-      font-family: 'Playfair Display', serif;
-      font-size: 1.1rem; color: var(--gold); letter-spacing: 0.02em;
-    }
-    .nav-badge {
-      font-family: 'DM Mono', monospace;
-      font-size: 0.65rem; color: rgba(255,255,255,0.45);
-      border: 1px solid rgba(255,255,255,0.15);
-      padding: 0.2rem 0.6rem; border-radius: 40px;
-    }
-    .nav-links { display: flex; gap: 2rem; }
-    .nav-links a {
-      color: rgba(255,255,255,0.55); text-decoration: none;
-      font-size: 0.85rem; font-weight: 500; letter-spacing: 0.04em;
-      transition: color 0.2s;
-    }
-    .nav-links a:hover, .nav-links a.active { color: var(--gold); }
-
-    /* ── HERO ── */
-    .hero {
-      background: var(--ink);
-      padding: 5rem 2.5rem 4rem;
-      position: relative; overflow: hidden;
-    }
-    .hero::before {
-      content: '🎬';
-      position: absolute; right: -2rem; top: -2rem;
-      font-size: 18rem; opacity: 0.04;
-      pointer-events: none; line-height: 1;
-    }
-    .hero-inner { max-width: 1100px; margin: 0 auto; }
-    .hero-eyebrow {
-      font-family: 'DM Mono', monospace;
-      font-size: 0.75rem; color: var(--gold);
-      letter-spacing: 0.15em; text-transform: uppercase;
-      margin-bottom: 1.2rem;
-      display: flex; align-items: center; gap: 0.75rem;
-    }
-    .hero-eyebrow::before {
-      content: ''; width: 32px; height: 1px; background: var(--gold);
-    }
-    .hero h1 {
-      font-family: 'Playfair Display', serif;
-      font-size: clamp(2.2rem, 5vw, 3.8rem);
-      color: #fff; line-height: 1.1;
-      margin-bottom: 1.2rem; max-width: 700px;
-    }
-    .hero h1 em { color: var(--gold); font-style: normal; }
-    .hero-sub {
-      color: rgba(255,255,255,0.55); font-size: 1.05rem;
-      max-width: 560px; margin-bottom: 2.5rem;
-    }
-    .hero-pills { display: flex; flex-wrap: wrap; gap: 0.75rem; }
-    .pill {
-      background: rgba(255,255,255,0.07);
-      border: 1px solid rgba(255,255,255,0.12);
-      color: rgba(255,255,255,0.7);
-      padding: 0.4rem 1rem; border-radius: 40px;
-      font-size: 0.8rem; font-weight: 500;
-    }
-    .pill.gold { background: rgba(201,168,76,0.15); border-color: rgba(201,168,76,0.4); color: var(--gold-light); }
-
-    /* ── PHASE TIMELINE ── */
-    .phases {
-      background: var(--paper-warm);
-      border-bottom: 1px solid rgba(10,10,15,0.08);
-      padding: 2rem 2.5rem;
-    }
-    .phases-inner {
-      max-width: 1100px; margin: 0 auto;
-      display: flex; gap: 0; align-items: stretch;
-    }
-    .phase {
-      flex: 1; padding: 1.2rem 1.5rem;
-      border-left: 3px solid transparent;
-      transition: border-color 0.2s;
-    }
-    .phase:hover { border-left-color: var(--gold); }
-    .phase-num {
-      font-family: 'DM Mono', monospace;
-      font-size: 0.7rem; color: var(--gold);
-      letter-spacing: 0.1em; margin-bottom: 0.4rem;
-    }
-    .phase h4 { font-size: 0.9rem; font-weight: 600; margin-bottom: 0.25rem; }
-    .phase p { font-size: 0.8rem; color: #666; line-height: 1.4; }
-    .phase-divider { width: 1px; background: rgba(10,10,15,0.1); flex-shrink: 0; }
-
-    /* ── MAIN CONTENT ── */
-    .main { max-width: 1100px; margin: 0 auto; padding: 3rem 2.5rem; }
-    .section { margin-bottom: 4rem; }
-
-    .section-header {
-      display: flex; align-items: baseline; gap: 1rem;
-      margin-bottom: 1.5rem;
-      padding-bottom: 0.75rem;
-      border-bottom: 1px solid rgba(10,10,15,0.1);
-    }
-    .section-header h2 {
-      font-family: 'Playfair Display', serif;
-      font-size: 1.6rem; font-weight: 700;
-    }
-    .section-tag {
-      font-family: 'DM Mono', monospace;
-      font-size: 0.65rem; color: var(--gold);
-      letter-spacing: 0.1em; text-transform: uppercase;
-      background: var(--gold-pale);
-      padding: 0.2rem 0.6rem; border-radius: 4px;
-    }
-
-    /* ── KPI STRIP ── */
-    .kpi-strip {
-      display: grid;
-      grid-template-columns: repeat(4, 1fr);
-      gap: 1rem; margin-bottom: 2rem;
-    }
-    .kpi {
-      background: var(--ink);
-      color: #fff; border-radius: var(--radius);
-      padding: 1.5rem; position: relative; overflow: hidden;
-    }
-    .kpi::after {
-      content: ''; position: absolute;
-      inset: 0; background: linear-gradient(135deg, transparent 60%, rgba(201,168,76,0.08));
-    }
-    .kpi-label {
-      font-family: 'DM Mono', monospace;
-      font-size: 0.65rem; letter-spacing: 0.12em;
-      text-transform: uppercase; color: rgba(255,255,255,0.4);
-      margin-bottom: 0.5rem;
-    }
-    .kpi-val {
-      font-family: 'Playfair Display', serif;
-      font-size: 2rem; font-weight: 700; color: var(--gold);
-      line-height: 1;
-    }
-    .kpi-sub { font-size: 0.75rem; color: rgba(255,255,255,0.4); margin-top: 0.4rem; }
-
-    /* ── TIER COMPARISON TABLE ── */
-    .tier-table-wrap {
-      background: #fff; border-radius: var(--radius);
-      box-shadow: var(--shadow); overflow: hidden;
-    }
-    .tier-table { width: 100%; border-collapse: collapse; }
-    .tier-table th {
-      padding: 1rem 1.25rem; font-size: 0.8rem;
-      font-weight: 600; text-align: left;
-      background: var(--ink); color: rgba(255,255,255,0.7);
-      letter-spacing: 0.04em;
-    }
-    .tier-table th.free { color: var(--free-color); }
-    .tier-table th.pro { color: var(--pro-color); }
-    .tier-table th.patron { color: var(--patron-color); }
-    .tier-table td {
-      padding: 0.9rem 1.25rem; font-size: 0.9rem;
-      border-bottom: 1px solid rgba(10,10,15,0.06);
-    }
-    .tier-table tr:last-child td { border-bottom: none; }
-    .tier-table tr:hover td { background: var(--gold-pale); }
-    .tier-table td:first-child {
-      font-weight: 600; font-size: 0.8rem;
-      color: #666; letter-spacing: 0.03em;
-    }
-    .metric-bar {
-      display: flex; align-items: center; gap: 0.6rem;
-    }
-    .bar-track {
-      flex: 1; height: 6px; background: #eee;
-      border-radius: 3px; overflow: hidden;
-    }
-    .bar-fill {
-      height: 100%; border-radius: 3px;
-      transition: width 1s ease;
-    }
-    .bar-val { font-family: 'DM Mono', monospace; font-size: 0.8rem; min-width: 50px; }
-
-    /* ── CHURN RISK PANEL ── */
-    .churn-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; }
-    .churn-card {
-      background: #fff; border-radius: var(--radius);
-      padding: 1.5rem; box-shadow: var(--shadow);
-      border-left: 4px solid transparent;
-    }
-    .churn-card.critical { border-color: var(--danger); }
-    .churn-card.high { border-color: #e67e22; }
-    .churn-card.medium { border-color: #f1c40f; }
-    .churn-card.low { border-color: var(--success); }
-    .churn-card h4 { font-size: 0.85rem; font-weight: 600; margin-bottom: 0.5rem; }
-    .churn-count {
-      font-family: 'Playfair Display', serif;
-      font-size: 2.2rem; font-weight: 700; line-height: 1;
-    }
-    .churn-card.critical .churn-count { color: var(--danger); }
-    .churn-card.high .churn-count { color: #e67e22; }
-    .churn-card.medium .churn-count { color: #d4a017; }
-    .churn-card.low .churn-count { color: var(--success); }
-    .churn-detail { font-size: 0.78rem; color: #888; margin-top: 0.4rem; }
-
-    /* ── INSIGHTS ── */
-    .insights-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1rem; }
-    .insight-card {
-      background: #fff; border-radius: var(--radius);
-      padding: 1.5rem; box-shadow: var(--shadow);
-      position: relative; overflow: hidden;
-    }
-    .insight-card::before {
-      content: attr(data-icon);
-      position: absolute; right: 1rem; top: 0.75rem;
-      font-size: 2.5rem; opacity: 0.12; line-height: 1;
-    }
-    .insight-label {
-      font-family: 'DM Mono', monospace;
-      font-size: 0.65rem; color: var(--gold);
-      letter-spacing: 0.1em; text-transform: uppercase;
-      margin-bottom: 0.5rem;
-    }
-    .insight-card h4 { font-size: 1rem; font-weight: 600; margin-bottom: 0.5rem; }
-    .insight-card p { font-size: 0.83rem; color: #555; line-height: 1.5; }
-    .insight-card .finding {
-      margin-top: 0.75rem; padding: 0.6rem 0.8rem;
-      background: var(--gold-pale); border-radius: 10px;
-      font-size: 0.8rem; font-weight: 600; color: #7a5e1a;
-    }
-
-    /* ── GENRE / DEVICE BREAKDOWN ── */
-    .breakdown-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem; }
-    .breakdown-card {
-      background: #fff; border-radius: var(--radius);
-      padding: 1.5rem; box-shadow: var(--shadow);
-    }
-    .breakdown-card h4 { font-size: 0.9rem; font-weight: 600; margin-bottom: 1rem; }
-    .donut-row {
-      display: flex; align-items: center; justify-content: space-between;
-      margin-bottom: 0.6rem;
-    }
-    .donut-label { font-size: 0.82rem; color: #444; flex: 1; }
-    .donut-track {
-      flex: 2; height: 8px; background: #eee;
-      border-radius: 4px; overflow: hidden; margin: 0 0.75rem;
-    }
-    .donut-fill { height: 100%; border-radius: 4px; }
-    .donut-pct { font-family: 'DM Mono', monospace; font-size: 0.75rem; color: #888; }
-
-    /* ── PERSONA CTA ── */
-    .persona-cta {
-      background: var(--ink); border-radius: var(--radius);
-      padding: 2.5rem; display: flex;
-      align-items: center; justify-content: space-between;
-      gap: 2rem; flex-wrap: wrap;
-    }
-    .persona-cta h3 {
-      font-family: 'Playfair Display', serif;
-      font-size: 1.6rem; color: #fff;
-    }
-    .persona-cta p { color: rgba(255,255,255,0.5); font-size: 0.9rem; margin-top: 0.4rem; }
-    .btn-gold {
-      display: inline-flex; align-items: center; gap: 0.5rem;
-      background: var(--gold); color: var(--ink);
-      font-weight: 700; font-size: 0.9rem;
-      padding: 0.85rem 2rem; border-radius: 40px;
-      text-decoration: none; transition: all 0.2s;
-      white-space: nowrap;
-    }
-    .btn-gold:hover { background: var(--gold-light); transform: translateY(-2px); box-shadow: 0 8px 20px rgba(201,168,76,0.3); }
-
-    /* ── FOOTER ── */
-    footer {
-      background: var(--ink-soft);
-      color: rgba(255,255,255,0.35);
-      text-align: center; padding: 2rem;
-      font-size: 0.78rem; letter-spacing: 0.02em;
-      border-top: 1px solid rgba(201,168,76,0.15);
-    }
-    footer strong { color: var(--gold); }
-
-    /* ── LOADING ── */
-    .loading-state {
-      text-align: center; padding: 3rem;
-      color: #888; font-size: 0.9rem;
-    }
-    .skeleton {
-      background: linear-gradient(90deg, #eee 25%, #f5f5f5 50%, #eee 75%);
-      background-size: 200% 100%;
-      animation: shimmer 1.4s infinite;
-      border-radius: 8px; height: 20px;
-    }
-    @keyframes shimmer { 0%{background-position:200% 0} 100%{background-position:-200% 0} }
-
-    /* ── RESPONSIVE ── */
-    @media (max-width: 800px) {
-      .kpi-strip { grid-template-columns: 1fr 1fr; }
-      .insights-grid, .breakdown-grid { grid-template-columns: 1fr; }
-      .phases-inner { flex-direction: column; }
-      .phase-divider { width: auto; height: 1px; }
-      .churn-grid { grid-template-columns: 1fr 1fr; }
-      nav { padding: 0 1.25rem; }
-      .nav-links { display: none; }
-      .hero { padding: 3rem 1.25rem 2.5rem; }
-      .main { padding: 2rem 1.25rem; }
-      .persona-cta { flex-direction: column; }
-    }
-    @media (max-width: 500px) {
-      .kpi-strip { grid-template-columns: 1fr; }
-      .churn-grid { grid-template-columns: 1fr; }
-    }
-  </style>
+  <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
@@ -457,7 +114,7 @@
       <span class="section-tag">Retention Signal</span>
     </div>
     <div class="churn-grid" id="churn-grid">
-      <div class="loading-state" style="grid-column:1/-1">Loading…</div>
+      <div class="loading-state grid-full">Loading…</div>
     </div>
   </div>
 
@@ -468,7 +125,7 @@
       <span class="section-tag">Audience Behaviour</span>
     </div>
     <div class="breakdown-grid" id="breakdown-grid">
-      <div class="loading-state" style="grid-column:1/-1">Loading…</div>
+      <div class="loading-state grid-full">Loading…</div>
     </div>
   </div>
 
@@ -479,7 +136,7 @@
       <span class="section-tag">Recommendations for LetterBoxd PM Team</span>
     </div>
     <div class="insights-grid" id="insights-grid">
-      <div class="loading-state" style="grid-column:1/-1">Loading…</div>
+      <div class="loading-state grid-full">Loading…</div>
     </div>
   </div>
 
@@ -546,12 +203,12 @@ async function init() {
     </div>
     <div class="kpi">
       <div class="kpi-label">Patron Session Avg</div>
-      <div class="kpi-val">${patronSession}<span style="font-size:1rem;color:rgba(201,168,76,0.6)">min</span></div>
+      <div class="kpi-val">${patronSession}<span class="kpi-unit">min</span></div>
       <div class="kpi-sub">${(stats.Patron.session/stats.Free.session).toFixed(1)}× longer than Free users</div>
     </div>
     <div class="kpi">
       <div class="kpi-label">Revenue: Patron Share</div>
-      <div class="kpi-val">${patronShare}<span style="font-size:1rem;color:rgba(201,168,76,0.6)">%</span></div>
+      <div class="kpi-val">${patronShare}<span class="kpi-unit">%</span></div>
       <div class="kpi-sub">15% of users · $${patronRev} of $${totalRev} est. monthly</div>
     </div>
   `;
@@ -559,14 +216,13 @@ async function init() {
   // ── TIER TABLE ──
   const maxW = stats.Patron.watchlist, maxS = stats.Patron.social, maxSes = stats.Patron.session;
   const maxM = stats.Patron.movies, maxR = stats.Patron.reviews;
-  const colors = { Free: '#4a7fa5', Pro: '#c9a84c', Patron: '#7b5ea7' };
 
   function barRow(label, key, max, unit='') {
     return `<tr>
       <td>${label}</td>
       ${['Free','Pro','Patron'].map(t=>`<td>
         <div class="metric-bar">
-          <div class="bar-track"><div class="bar-fill" style="width:${Math.round(stats[t][key]/max*100)}%;background:${colors[t]}"></div></div>
+          <div class="bar-track"><div class="bar-fill ${t.toLowerCase()}" style="width:${Math.round(stats[t][key]/max*100)}%"></div></div>
           <span class="bar-val">${Math.round(stats[t][key])}${unit}</span>
         </div>
       </td>`).join('')}
@@ -646,8 +302,8 @@ async function init() {
     <div class="insight-card" data-icon="👑">
       <div class="insight-label">Power User Signal</div>
       <h4>Patron Multiplier Effect</h4>
-      <p>Patron users have <strong>${patronMultiplier}×</strong> the watchlist size and <strong>${sessionMultiplier}×</strong> the session length of Free users. They are the most defensible segment — zero churn — but only 15% of this dataset.</p>
-      <div class="finding">👑 Patron lifetime value: ~${(36.7*25).toFixed(0)} total avg revenue vs Free $0</div>
+      <p>Patron users have <strong>${patronMultiplier}×</strong> the watchlist size and <strong>${sessionMultiplier}×</strong> the session length of Free users. They are the most defensible segment — zero churn — but only ${Math.round(stats.Patron.n / total * 100)}% of this dataset.</p>
+      <div class="finding">👑 Patron lifetime value: ~${(stats.Patron.age * 25).toFixed(0)} total avg revenue vs Free $0</div>
     </div>
     <div class="insight-card" data-icon="📱">
       <div class="insight-label">Platform Strategy</div>

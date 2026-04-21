@@ -34,6 +34,27 @@ const personas = {
 document.addEventListener('DOMContentLoaded', () => {
   const card = document.getElementById('persona-card');
 
+  // Fetch and calculate dynamic revenue stats from user data
+  fetch('data/users.json')
+    .then(response => response.json())
+    .then(data => {
+      const stats = data.users.reduce((acc, user) => {
+        acc[user.tier].n++;
+        return acc;
+      }, { Free: { n: 0 }, Pro: { n: 0 }, Patron: { n: 0 } });
+
+      const totalRev = (stats.Patron.n * 25) + (stats.Pro.n * 10);
+      const patronRev = stats.Patron.n * 25;
+      const patronShare = totalRev > 0 ? Math.round(patronRev / totalRev * 100) : 0;
+
+      // Update UI elements if they exist in the DOM
+      const revEl = document.getElementById('total-revenue');
+      const shareEl = document.getElementById('patron-share');
+      if (revEl) revEl.textContent = `$${totalRev}`;
+      if (shareEl) shareEl.textContent = `${patronShare}%`;
+    })
+    .catch(err => console.error('Error calculating dynamic stats:', err));
+
   function showPersona(tier) {
     if (!card) return;
     
