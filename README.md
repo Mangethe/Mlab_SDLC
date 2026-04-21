@@ -100,7 +100,7 @@ We segmented 20+ million LetterBoxd users by **subscription tier** (Free, Pro, P
 
 ```bash
 git clone https://github.com/mangethe/Mlab_SDLC.git
-cd letterboxd-user-persona
+cd Mlab_SDLC
 open index.html
 ```
 
