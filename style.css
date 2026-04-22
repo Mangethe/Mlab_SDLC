@@ -132,6 +132,7 @@ nav {
   display: flex; align-items: center; justify-content: space-between;
   padding: 0 2.5rem; height: 62px;
   border-bottom: 1px solid rgba(200,164,90,0.2);
+  -webkit-backdrop-filter: blur(12px);
   backdrop-filter: blur(12px);
 }
 
@@ -760,6 +761,7 @@ footer code {
   border-bottom: 1px solid rgba(8,8,16,0.08);
   padding: 1.1rem 2.5rem;
   position: sticky; top: 62px; z-index: 100;
+  -webkit-backdrop-filter: blur(8px);
   backdrop-filter: blur(8px);
 }
 
@@ -1066,8 +1068,8 @@ footer code {
 
 .login-box {
   background: rgba(255,255,255,0.04);
-  backdrop-filter: blur(24px);
   -webkit-backdrop-filter: blur(24px);
+  backdrop-filter: blur(24px);
   border: 1px solid rgba(255,255,255,0.08);
   border-radius: var(--r-xl);
   padding: 2.25rem;

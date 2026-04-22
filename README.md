@@ -128,6 +128,7 @@ Mlab_SDLC/
 ├── personas.html
 
 ├── data/
+
 │   └── users.json          ← generated using convert_to_json.py script
 
 ├── convert_to_json.py      ← (run only after new updates to the users)
