@@ -4,7 +4,7 @@
 
 This project was developed as part of a **product development workshop** organised by **Mlab** in partnership with **GIZ**. The goal was to apply the full product lifecycle (from stakeholder analysis to deployment) using real-world user data from **LetterBoxd**, a social platform for film lovers.
 
-We segmented 20+ million LetterBoxd users by **subscription tier** (Free, Pro, Patron) and created **data-driven user personas** to understand behaviours, habits, and churn risk.
+We segmented 20 LetterBoxd users by **subscription tier** (Free, Pro, Patron) and created **data-driven user personas** to understand behaviours, habits, and churn risk.
 
 ---
 
